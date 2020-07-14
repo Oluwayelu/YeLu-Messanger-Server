@@ -9,6 +9,11 @@ router.get('/', (req, res) => {
 router.get('/chats', (req, res) => {
   Chat.find()
     .populate('sender')
+    .then(chats => {
+      if (!chats) return res.status(400).json({ success: false, msg: 'Chats not found' })
+
+      res.status(200).json({ success: true, chats })
+    })
 })
 
 module.exports = router

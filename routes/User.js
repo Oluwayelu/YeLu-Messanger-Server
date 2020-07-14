@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
 
-const jwtSecret = process.env.JWT_SECRET
+const jwtSecret = process.env.JWT_SECRET || 'YeLuMessngerSecret'
 
 router.get('/', (req, res) => {
   User.find({}, { password: 0 })
